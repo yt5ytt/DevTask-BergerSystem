@@ -14,4 +14,6 @@
    */
   include(ABSPATH . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
 
-  
+  use App\ParticipansTable;
+
+  new ParticipansTable();
