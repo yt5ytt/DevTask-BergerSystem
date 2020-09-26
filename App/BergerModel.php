@@ -2,6 +2,7 @@
 
 /**
  * @package Berger system
+ * @author Aleksandar Safranec <yt5ytt@gmail.com>
  */
 
  namespace App;
@@ -18,6 +19,15 @@ class BergerModel extends Dbh
     $result = $this->dbh()->prepare($sql);
     $tableCreation = $result->execute();
     return $tableCreation;
+  }
+
+  protected function checkParticipants()
+  {
+    $sql = "SELECT COUNT(*) from participans";
+    $result = $this->dbh()->prepare($sql);
+    $result->execute();
+    $count = $result->fetchColumn();
+    return $count;
   }
 
   protected function setParticipant($participant)

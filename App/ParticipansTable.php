@@ -1,7 +1,8 @@
 <?php
 
 /**
- *
+ * @package Berger system
+ * @author Aleksandar Safranec <yt5ytt@gmail.com>
  */
 
  namespace App;
