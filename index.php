@@ -9,12 +9,11 @@
   * Define absolute path and absolute URL to the bergerSystem folder
   */
  define('ABSPATH', dirname(__FILE__) . DIRECTORY_SEPARATOR);
- define('URL' , $_SERVER['HTTP_REFERER'] . basename(__DIR__) . DIRECTORY_SEPARATOR);
 
  /**
   * Include header
   */
-  include(ABSPATH . 'Includes' . DIRECTORY_SEPARATOR . 'Pages' . DIRECTORY_SEPARATOR . 'header.php');  
+  include('header.php');
 
   /**
    * Include Composer autoload file
@@ -23,16 +22,23 @@
 
   use App\ParticipansTable;
   use App\GetNumberParticipans;
+  use App\InputParticipant;
+  use App\GetParticipans;
 
   new ParticipansTable();
   $count = new GetNumberParticipans();
-  if(!$count->getNumberParticipans()):
-    echo 'Nema ucesnika jos uvek';
-  elseif($count->getNumberParticipans()):
-    echo 'Ima ucesnika';
-  endif;
+  $get = new GetParticipans();
+
+  include('formPage.php');
+
+  if(isset($_POST['upisiEkipu'])){
+    $participant = $_POST['team'];
+    $input = new InputParticipant($participant);
+    $input->inputParticipant();
+  }
+
 
 /**
  * Include footer
  */
-  include(ABSPATH . 'Includes' . DIRECTORY_SEPARATOR . 'Pages' . DIRECTORY_SEPARATOR . 'footer.php');
+  include('footer.php');

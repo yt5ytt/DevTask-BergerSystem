@@ -24,14 +24,21 @@ class BergerModel extends Dbh
   protected function checkParticipants()
   {
     $sql = "SELECT COUNT(*) from participans";
-    $result = $this->dbh()->prepare($sql);
-    $result->execute();
-    $count = $result->fetchColumn();
-    return $count;
+    $result = $this->dbh()->exec($sql);
+    return $result;
   }
 
   protected function setParticipant($participant)
   {
+    $sql = "INSERT INTO participans (participant) VALUES (?)";
+    $result = $this->dbh()->prepare($sql);
+    $result->execute([$participant]);
+  }
 
+  protected function getParticipans(){
+    $sql = "SELECT * FROM participans";
+    $result = $this->dbh()->prepare($sql);
+    $result->execute();
+    return $result->fetchAll();
   }
 }
