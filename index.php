@@ -29,13 +29,23 @@
   $count = new GetNumberParticipans();
   $get = new GetParticipans();
 
-  include('formPage.php');
-
   if(isset($_POST['upisiEkipu'])){
     $participant = $_POST['team'];
     $input = new InputParticipant($participant);
     $input->inputParticipant();
   }
+
+  if(@$_GET['page'] != 'startLeague'):
+    include('formPage.php');
+  else:
+    if($count->getNumberParticipans() % 2 != 0):
+      $input = new InputParticipant('slobodan');
+      $input->inputParticipant();
+    endif;
+
+    //Sada ide Bergerov sistem ovde... Pravi clase da mogu da rade posao.
+
+  endif;
 
 
 /**

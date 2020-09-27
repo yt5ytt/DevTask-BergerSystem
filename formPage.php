@@ -11,7 +11,7 @@
       </div>
 
       <div class="input">
-        <input type="text" name="team" placeholder="Upisi ekipu" />
+        <input type="text" name="team" placeholder="Upisi ekipu" required />
       </div>
 
       <div class="button">
@@ -38,4 +38,9 @@
       endforeach;
      ?>
   </div>
-</div>
+
+  <div class="next">
+    <button><a href="index.php?page=startLeague">Start league</a></button>
+  </div>
+
+</div><!-- kraj diva #form -->

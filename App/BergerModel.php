@@ -24,8 +24,10 @@ class BergerModel extends Dbh
   protected function checkParticipants()
   {
     $sql = "SELECT COUNT(*) from participans";
-    $result = $this->dbh()->exec($sql);
-    return $result;
+    $result = $this->dbh()->prepare($sql);
+    $result->execute();
+    $count = $result->fetchColumn();
+    return $count;
   }
 
   protected function setParticipant($participant)
