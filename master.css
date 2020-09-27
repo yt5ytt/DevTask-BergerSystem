@@ -51,14 +51,7 @@
   font-size: 1.5rem;
   padding: 0.2rem 3rem;
   line-height: 2rem;
-}
-
-#form button a{
-  text-decoration: none;
-  color: black;
-  display: block;
   cursor: pointer;
-  line-height: 2rem;
 }
 
 #form .ucesnik{

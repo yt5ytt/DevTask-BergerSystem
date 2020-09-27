@@ -40,7 +40,7 @@
   </div>
 
   <div class="next">
-    <button><a href="index.php?page=startLeague">Start league</a></button>
+    <button onclick="startLeague()">Start league</button>
   </div>
 
 </div><!-- kraj diva #form -->
