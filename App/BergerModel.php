@@ -44,6 +44,14 @@ class BergerModel extends Dbh
     return $result->fetchAll();
   }
 
+  protected function getParticipant($id){
+    $sql = "SELECT participant FROM participans WHERE id='$id'";
+    $result = $this->dbh()->prepare($sql);
+    $result->execute();
+    $participant = $result->fetchColumn();
+    return $participant;
+  }
+
   protected function createDayTables($day){
 
     if($day < 10):

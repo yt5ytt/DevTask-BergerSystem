@@ -52,7 +52,6 @@
     }
 
     //uneti meceve poslednjeg na listi u tabele
-    
 
 
 
