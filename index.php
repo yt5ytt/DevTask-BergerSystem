@@ -24,6 +24,8 @@
   use App\GetNumberParticipans;
   use App\InputParticipant;
   use App\GetParticipans;
+  use App\Numbers;
+  use App\DayTableCreation;
 
   new ParticipansTable();
   $count = new GetNumberParticipans();
@@ -38,12 +40,21 @@
   if(@$_GET['page'] != 'startLeague'):
     include('formPage.php');
   else:
-    if($count->getNumberParticipans() % 2 != 0):
-      $input = new InputParticipant('slobodan');
-      $input->inputParticipant();
-    endif;
+
+    $numbers = new Numbers($count->getNumberParticipans());
 
     //Sada ide Bergerov sistem ovde... Pravi clase da mogu da rade posao.
+
+    //napraviti tabele za sva kola
+    for($i=1; $i<=$numbers->numberOfDays()*2; $i++){
+      $tables = new DayTableCreation($i);
+      $tables->createTables();
+    }
+
+    //uneti meceve poslednjeg na listi u tabele
+    
+
+
 
   endif;
 

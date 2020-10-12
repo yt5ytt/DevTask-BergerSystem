@@ -43,4 +43,25 @@ class BergerModel extends Dbh
     $result->execute();
     return $result->fetchAll();
   }
+
+  protected function createDayTables($day){
+
+    if($day < 10):
+      $tableName = 'day_0' . $day;
+    else:
+      $tableName = 'day_' . $day;
+    endif;
+
+    $sql = "CREATE TABLE IF NOT EXISTS $tableName
+    (
+      id int(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+      host VARCHAR(50) NOT NULL,
+      guest VARCHAR(50) NOT NULL,
+      host_score int(1),
+      guest_score int(1)
+    )";
+
+    $result = $this->dbh()->prepare($sql);
+    $tableCreation = $result->execute();
+  }
 }
