@@ -72,4 +72,24 @@ class BergerModel extends Dbh
     $result = $this->dbh()->prepare($sql);
     $tableCreation = $result->execute();
   }
+
+  protected function setLastFixtures($day, $host, $guest){
+    if($day < 10):
+      $tableName = 'day_0' . $day;
+    else:
+      $tableName = 'day_' . $day;
+    endif;
+
+    if($guest == 'slobodan'):
+      $host = $this->getParticipant($host);
+    else:
+      $host = $this->getParticipant($host);
+      $guest = $this->getParticipant($guest);
+    endif;    
+
+    $sql = "INSERT INTO $tableName (host, guest) VALUES (?, ?)";
+    $result = $this->dbh()->prepare($sql);
+    $result->execute([$host, $guest]);
+
+  }
 }

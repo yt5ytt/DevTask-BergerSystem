@@ -28,10 +28,14 @@ class Numbers
     return $numberOfDays;
   }
 
-  public function passParticipant()
+  public function lastParticipant()
   {
-    $passParticipant = $this->numberOfParticipans + 1;
+    if($this->numberOfParticipans % 2 == 0):
+      $lastParticipant = $this->numberOfParticipans;
+    else:
+      $lastParticipant = $this->numberOfParticipans + 1;
+    endif;
 
-    return $passParticipant;
+    return $lastParticipant;
   }
 }

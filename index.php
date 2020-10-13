@@ -26,6 +26,7 @@
   use App\GetParticipans;
   use App\Numbers;
   use App\DayTableCreation;
+  use App\LastFixtures;
 
   new ParticipansTable();
   $count = new GetNumberParticipans();
@@ -53,6 +54,8 @@
 
     //uneti meceve poslednjeg na listi u tabele
 
+    $last = new LastFixtures($count->getNumberParticipans(), $numbers->lastParticipant(), $numbers->numberOfDays());
+    $last->lastFixtures();
 
 
   endif;
