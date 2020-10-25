@@ -5,6 +5,17 @@
  * @author Aleksandar Safranec <yt5ytt@gmail.com>
  */
 
+ if(!isset($_POST['upisiEkipu']) and @$_GET['page'] == ''){
+   $db = new PDO("mysql:host=localhost", 'root', '');
+   $initSql = 'DROP DATABASE berger_system';
+   $initResult = $db->prepare($initSql);
+   $initResult->execute();
+
+   $createSql = 'CREATE DATABASE berger_system CHARACTER SET utf8mb4 collate=utf8mb4_unicode_520_ci';
+   $createResult = $db->prepare($createSql);
+   $createResult->execute();
+ }
+
  /**
   * Define absolute path and absolute URL to the bergerSystem folder
   */
@@ -27,6 +38,7 @@
   use App\Numbers;
   use App\DayTableCreation;
   use App\LastFixtures;
+  use App\OtherFixtures;
 
   new ParticipansTable();
   $count = new GetNumberParticipans();
@@ -56,6 +68,11 @@
 
     $last = new LastFixtures($count->getNumberParticipans(), $numbers->lastParticipant(), $numbers->numberOfDays());
     $last->lastFixtures();
+
+    //uneti meceve ostalih ucesnika
+
+    $other = new OtherFixtures($count->getNumberParticipans(), $numbers->lastParticipant(), $numbers->numberOfDays());
+    $other->otherFixtures();
 
 
   endif;

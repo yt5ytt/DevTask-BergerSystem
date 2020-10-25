@@ -85,11 +85,38 @@ class BergerModel extends Dbh
     else:
       $host = $this->getParticipant($host);
       $guest = $this->getParticipant($guest);
-    endif;    
+    endif;
 
     $sql = "INSERT INTO $tableName (host, guest) VALUES (?, ?)";
     $result = $this->dbh()->prepare($sql);
     $result->execute([$host, $guest]);
 
+  }
+
+  protected function setOtherFixtures($day, $host, $guest){
+    if($day < 10):
+      $tableName = 'day_0' . $day;
+    else:
+      $tableName = 'day_' . $day;
+    endif;
+
+    $checkHost = "SELECT COUNT(host, guest) FROM $tableName WHERE host=$host";
+    $result = $this->dbh()->prepare($checkHost);
+    $result->execute();
+    $countHost = $result->fetchColumn();
+
+    $checkGuest = "SELECT COUNT(host, guest) FROM $tableName WHERE host=$guest";
+    $result = $this->dbh()->prepare($checkGuest);
+    $result->execute();
+    $countGuest = $result->fetchColumn();
+
+    if($countHost == 0 AND $countGuest == 0){
+      $host = $this->getParticipant($host);
+      $guest = $this->getParticipant($guest);
+
+      $sql = "INSERT INTO $tableName (host, guest) VALUES (?, ?)";
+      $result = $this->dbh()->prepare($sql);
+      $result->execute([$host, $guest]);
+    }
   }
 }

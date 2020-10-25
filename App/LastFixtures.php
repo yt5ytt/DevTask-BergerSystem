@@ -37,8 +37,6 @@ class LastFixtures extends BergerModel
         $day = $day + $this->numberOfDays;
         $this->setLastFixtures($day, $guest, $host);
       }
-
-
     }
   }
 
@@ -80,11 +78,4 @@ class LastFixtures extends BergerModel
 
     return $guest;
   }
-    //treba da se napise if statement gde se proverava i odredjuje koji treba da bude host a koji guest
-    //ako su oba igraca parni, odnosno neparni, host je onaj sa vecim brojem, a ako su raznorodni, onda
-    //host je onaj sa manjim brojem
-
-
-
-
 }
