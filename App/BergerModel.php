@@ -9,6 +9,10 @@
 
 class BergerModel extends Dbh
 {
+
+  /**
+   * Create participans DB table
+   */
   protected function setParticipansTable()
   {
     $sql = "CREATE TABLE IF NOT EXISTS participans
@@ -21,6 +25,9 @@ class BergerModel extends Dbh
     return $tableCreation;
   }
 
+  /**
+   * Checks how much participans is in participans DB table
+   */
   protected function checkParticipants()
   {
     $sql = "SELECT COUNT(*) from participans";
@@ -30,6 +37,9 @@ class BergerModel extends Dbh
     return $count;
   }
 
+  /**
+   * Input one participant in participans table
+   */
   protected function setParticipant($participant)
   {
     $sql = "INSERT INTO participans (participant) VALUES (?)";
@@ -37,6 +47,9 @@ class BergerModel extends Dbh
     $result->execute([$participant]);
   }
 
+  /**
+   * Gets all participans
+   */
   protected function getParticipans(){
     $sql = "SELECT * FROM participans";
     $result = $this->dbh()->prepare($sql);
@@ -44,6 +57,9 @@ class BergerModel extends Dbh
     return $result->fetchAll();
   }
 
+  /**
+   * Gets one participant
+   */
   protected function getParticipant($id){
     $sql = "SELECT participant FROM participans WHERE id='$id'";
     $result = $this->dbh()->prepare($sql);
@@ -52,6 +68,9 @@ class BergerModel extends Dbh
     return $participant;
   }
 
+  /**
+   * Creates all league days DB tables
+   */
   protected function createDayTables($day){
 
     if($day < 10):
@@ -73,6 +92,9 @@ class BergerModel extends Dbh
     $tableCreation = $result->execute();
   }
 
+  /**
+   * Sets all last participant matches
+   */
   protected function setLastFixtures($day, $host, $guest){
     if($day < 10):
       $tableName = 'day_0' . $day;
@@ -93,6 +115,9 @@ class BergerModel extends Dbh
 
   }
 
+  /**
+   * Sets all other participans matches
+   */
   protected function setOtherFixtures($day, $host, $guest){
     if($day < 10):
       $tableName = 'day_0' . $day;
@@ -119,4 +144,5 @@ class BergerModel extends Dbh
       $result->execute([$host, $guest]);
     }
   }
+  
 }

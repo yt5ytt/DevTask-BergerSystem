@@ -5,6 +5,9 @@
  * @author Aleksandar Safranec <yt5ytt@gmail.com>
  */
 
+ /**
+  * DB creation for new game
+  */
  if(!isset($_POST['upisiEkipu']) and @$_GET['page'] == ''){
    $db = new PDO("mysql:host=localhost", 'root', '');
    $initSql = 'DROP DATABASE berger_system';
@@ -44,33 +47,47 @@
   $count = new GetNumberParticipans();
   $get = new GetParticipans();
 
+  /**
+   * Insert participans one by one
+   */
   if(isset($_POST['upisiEkipu'])){
     $participant = $_POST['team'];
     $input = new InputParticipant($participant);
     $input->inputParticipant();
   }
 
+  /**
+   * If Start League is pressed, game begins
+   */
   if(@$_GET['page'] != 'startLeague'):
+    /**
+     * Includes Form Page for insert participans
+     */
     include('formPage.php');
   else:
 
+    /**
+     * Set important numbers
+     */
     $numbers = new Numbers($count->getNumberParticipans());
 
-    //Sada ide Bergerov sistem ovde... Pravi clase da mogu da rade posao.
-
-    //napraviti tabele za sva kola
+    /**
+     * Table creation for all days of league
+     */
     for($i=1; $i<=$numbers->numberOfDays()*2; $i++){
       $tables = new DayTableCreation($i);
       $tables->createTables();
     }
 
-    //uneti meceve poslednjeg na listi u tabele
-
+    /**
+     * Insert matches of last league number participant
+     */
     $last = new LastFixtures($count->getNumberParticipans(), $numbers->lastParticipant(), $numbers->numberOfDays());
     $last->lastFixtures();
 
-    //uneti meceve ostalih ucesnika
-
+    /**
+     * Insert matches of other participants
+     */
     $other = new OtherFixtures($count->getNumberParticipans(), $numbers->lastParticipant(), $numbers->numberOfDays());
     $other->otherFixtures();
 

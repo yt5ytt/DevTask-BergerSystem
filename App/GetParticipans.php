@@ -3,6 +3,7 @@
 /**
  * @package Berger system
  * @author Aleksandar Safranec <yt5ytt@gmail.com>
+ * Description: Get all participans
  */
 
  namespace App;
@@ -12,7 +13,7 @@
 
    public function getAllParticipans()
    {
-     return $this->getParticipans();     
+     return $this->getParticipans();
    }
 
  }

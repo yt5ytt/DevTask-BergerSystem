@@ -3,6 +3,7 @@
 /**
  * @package Berger system
  * @author Aleksandar Safranec <yt5ytt@gmail.com>
+ * Description: Insert matches of last league number participant in all league days DB tables
  */
 
  namespace App;

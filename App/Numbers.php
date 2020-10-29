@@ -3,6 +3,7 @@
 /**
  * @package Berger system
  * @author Aleksandar Safranec <yt5ytt@gmail.com>
+ * Description: Sets important numbers
  */
 
  namespace App;
