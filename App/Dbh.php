@@ -17,9 +17,8 @@ class Dbh
 
   protected function dbh()
   {
-    $dsn = 'mysql: host=' . $this->hostname . '; dbname=' . $this->dbName;
+    $dsn = 'mysql: host=' . $this->hostname . '; dbname=' . $this->dbName . '; charset=utf8; connect_timeout=30';
     $pdo = new \PDO($dsn, $this->username, $this->password);
-    $pdo->exec("SET NAMES 'utf8'");
     $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
     return $pdo;
   }

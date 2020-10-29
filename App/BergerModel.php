@@ -14,8 +14,8 @@ class BergerModel extends Dbh
     $sql = "CREATE TABLE IF NOT EXISTS participans
     (
       id int(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-      participant VARCHAR(50) NOT NULL
-    )";
+      participant VARCHAR(50) CHARACTER SET utf8
+    ) Engine=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci";
     $result = $this->dbh()->prepare($sql);
     $tableCreation = $result->execute();
     return $tableCreation;
@@ -63,11 +63,11 @@ class BergerModel extends Dbh
     $sql = "CREATE TABLE IF NOT EXISTS $tableName
     (
       id int(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-      host VARCHAR(50) NOT NULL,
-      guest VARCHAR(50) NOT NULL,
+      host VARCHAR(50) CHARACTER SET utf8,
+      guest VARCHAR(50) CHARACTER SET utf8,
       host_score int(1),
       guest_score int(1)
-    )";
+    ) Engine=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci";
 
     $result = $this->dbh()->prepare($sql);
     $tableCreation = $result->execute();
