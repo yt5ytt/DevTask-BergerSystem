@@ -91,6 +91,8 @@
     $other = new OtherFixtures($count->getNumberParticipans(), $numbers->lastParticipant(), $numbers->numberOfDays());
     $other->otherFixtures();
 
+    include('allFixtures.php');
+
 
   endif;
 

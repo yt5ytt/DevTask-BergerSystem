@@ -73,11 +73,13 @@ class BergerModel extends Dbh
    */
   protected function createDayTables($day){
 
-    if($day < 10):
-      $tableName = 'day_0' . $day;
-    else:
-      $tableName = 'day_' . $day;
-    endif;
+    // if($day < 10):
+    //   $tableName = 'day_0' . $day;
+    // else:
+    //   $tableName = 'day_' . $day;
+    // endif;
+
+    $tableName = $this->tableName($day);
 
     $sql = "CREATE TABLE IF NOT EXISTS $tableName
     (
@@ -96,11 +98,13 @@ class BergerModel extends Dbh
    * Sets all last participant matches
    */
   protected function setLastFixtures($day, $host, $guest){
-    if($day < 10):
-      $tableName = 'day_0' . $day;
-    else:
-      $tableName = 'day_' . $day;
-    endif;
+    // if($day < 10):
+    //   $tableName = 'day_0' . $day;
+    // else:
+    //   $tableName = 'day_' . $day;
+    // endif;
+
+    $tableName = $this->tableName($day);
 
     if($guest == 'slobodan'):
       $host = $this->getParticipant($host);
@@ -119,11 +123,13 @@ class BergerModel extends Dbh
    * Sets all other participans matches
    */
   protected function setOtherFixtures($day, $host, $guest){
-    if($day < 10):
-      $tableName = 'day_0' . $day;
-    else:
-      $tableName = 'day_' . $day;
-    endif;
+    // if($day < 10):
+    //   $tableName = 'day_0' . $day;
+    // else:
+    //   $tableName = 'day_' . $day;
+    // endif;
+
+    $tableName = $this->tableName($day);
 
     $checkHost = "SELECT COUNT(host, guest) FROM $tableName WHERE host=$host";
     $result = $this->dbh()->prepare($checkHost);
@@ -144,5 +150,30 @@ class BergerModel extends Dbh
       $result->execute([$host, $guest]);
     }
   }
-  
+
+  protected function dayPairs($day){
+    // if($day < 10):
+    //   $tableName = 'day_0' . $day;
+    // else:
+    //   $tableName = 'day_' . $day;
+    // endif;
+
+    $tableName = $this->tableName($day);
+
+    $sql = "SELECT * FROM $tableName";
+    $result = $this->dbh()->prepare($sql);
+    $result->execute();
+    return $result->fetchAll();
+  }
+
+  private function tableName($day){
+    if($day < 10):
+      $tableName = 'day_0' . $day;
+    else:
+      $tableName = 'day_' . $day;
+    endif;
+
+    return $tableName;
+  }
+
 }
