@@ -3,6 +3,7 @@
 /**
  * @package Berger system
  * @author Aleksandar Safranec <yt5ytt@gmail.com>
+ * Description: Prints all fixtures
  */
 
  use App\GetDayPairs;
