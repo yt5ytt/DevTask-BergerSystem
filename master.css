@@ -47,7 +47,7 @@
   text-indent: 1rem;
 }
 
-#form button{
+button{
   font-size: 1.5rem;
   padding: 0.2rem 3rem;
   line-height: 2rem;
@@ -69,30 +69,4 @@
 
 #form .next{
   grid-area: next;
-}
-
-#fixtures{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-  'naslov naslov'
-  'dayFixture table';
-  grid-gap: .5rem;
-  text-align: center;
-  outline: 1px solid red;
-}
-
-#fixtures .naslov{
-  grid-area: naslov;
-  background-color: orange;
-}
-
-#fixtures .dayFixture{
-  grid-area: dayFixture;
-  background-color: lightgreen;
-}
-
-#fixtures .table{
-  grid-area: table;
-  background-color: lightblue;
 }
