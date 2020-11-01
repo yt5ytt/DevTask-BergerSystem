@@ -3,7 +3,7 @@
 /**
  * @package Berger system
  * @author Aleksandar Safranec <yt5ytt@gmail.com>
- * Description: Creates all league days DB tables
+ * Description: Gets all league pairs of all days
  */
 
  namespace App;
