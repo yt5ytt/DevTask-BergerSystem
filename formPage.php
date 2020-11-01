@@ -1,13 +1,13 @@
 <div id="form">
   <div class="naslov">
-    <h1>Forma za upisivanje ekipa</h1>
+    <h1>Team inserting form</h1>
   </div>
   <div class="forma">
 
     <form action="index.php" method="post">
 
       <div class="title">
-        <h2>Unesi novu ekipu</h2>
+        <h2>Input new participant</h2>
       </div>
 
       <div class="input">
@@ -15,7 +15,7 @@
       </div>
 
       <div class="button">
-        <button type="submit" name="upisiEkipu">Unesi ekipu</button>
+        <button type="submit" name="upisiEkipu">Input participant</button>
       </div>
 
     </form>
@@ -25,7 +25,7 @@
   <div class="lista">
 
     <div class="title">
-      <h2>Lista ekipa</h2>
+      <h2>List of participants</h2>
     </div>
 
     <?php
